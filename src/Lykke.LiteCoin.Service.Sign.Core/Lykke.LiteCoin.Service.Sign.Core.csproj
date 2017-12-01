@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Lykke.LiteCoin.Service.Sign.Core</AssemblyName>
+    <RootNamespace>Lykke.LiteCoin.Service.Sign.Core</RootNamespace>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lykke.Common" Version="3.0.0" />
+    <PackageReference Include="NBitcoin" Version="4.0.0.47" />
+  </ItemGroup>
+
+</Project>
