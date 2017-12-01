@@ -60,8 +60,8 @@ namespace Lykke.Service.LiteCoin.Sign
 
                 var modules = new Module[]
                 {
-                    new SignInModule(appSettings.Nested(x => x.LiteCoinSignSettings), Log),
-                    new ServiceModule(appSettings.Nested(x=>x.LiteCoinSignSettings), Log)
+                    new SignInModule(appSettings.Nested(x => x.LiteCoinSign), Log),
+                    new ServiceModule(appSettings.Nested(x=>x.LiteCoinSign), Log)
                 };
 
                 foreach (var module in modules )
@@ -182,7 +182,7 @@ namespace Lykke.Service.LiteCoin.Sign
                 QueueName = settings.CurrentValue.SlackNotifications.AzureQueue.QueueName
             }, aggregateLogger);
 
-            var dbLogConnectionStringManager = settings.Nested(x => x.LiteCoinSignSettings.Db.LogsConnString);
+            var dbLogConnectionStringManager = settings.Nested(x => x.LiteCoinSign.Db.LogsConnString);
             var dbLogConnectionString = dbLogConnectionStringManager.CurrentValue;
 
             // Creating azure storage logger, which logs own messages to concole log
