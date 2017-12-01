@@ -53,8 +53,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Lykke.LiteCoin.Service.Sign.Core\Lykke.LiteCoin.Service.Sign.Core.csproj" />
-    <ProjectReference Include="..\Lykke.LiteCoin.Service.Sign.Services\Lykke.LiteCoin.Service.Sign.Services.csproj" />
+    <ProjectReference Include="..\Lykke.Service.LiteCoin.Sign.Core\Lykke.Service.LiteCoin.Sign.Core.csproj" />
+    <ProjectReference Include="..\Lykke.Service.LiteCoin.Sign.Services\Lykke.Service.LiteCoin.Sign.Services.csproj" />
   </ItemGroup>
 
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">

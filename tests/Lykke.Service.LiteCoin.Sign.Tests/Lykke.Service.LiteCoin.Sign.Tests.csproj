@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Lykke.LiteCoin.Service.Sign.Services\Lykke.LiteCoin.Service.Sign.Services.csproj" />
+    <ProjectReference Include="..\..\src\Lykke.Service.LiteCoin.Sign.Services\Lykke.Service.LiteCoin.Sign.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
