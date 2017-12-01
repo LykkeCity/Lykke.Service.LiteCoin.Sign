@@ -13,8 +13,8 @@ namespace Lykke.LiteCoin.Sign.Services
     public  class ServiceModule:Module
     {
         private readonly ILog _log;
-        private readonly IReloadingManager<SignSettings> _settings;
-        public ServiceModule(IReloadingManager<SignSettings> settings, ILog log)
+        private readonly IReloadingManager<LiteCoinSignSettings> _settings;
+        public ServiceModule(IReloadingManager<LiteCoinSignSettings> settings, ILog log)
         {
             _log = log;
             _settings = settings;
