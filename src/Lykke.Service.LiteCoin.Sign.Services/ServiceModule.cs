@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Common.Log;
-using Lykke.LiteCoin.Service.Sign.Core.Settings.ServiceSettings;
-using Lykke.LiteCoin.Service.Sign.Core.Sign;
-using Lykke.LiteCoin.Service.Sign.Core.Transaction;
+using Lykke.Service.LiteCoin.Sign.Core.Settings.ServiceSettings;
+using Lykke.Service.LiteCoin.Sign.Core.Sign;
+using Lykke.Service.LiteCoin.Sign.Core.Transaction;
 using Lykke.LiteCoin.Sign.Services.BitcoinTransaction;
 using Lykke.LiteCoin.Sign.Services.Sign;
 using Lykke.SettingsReader;

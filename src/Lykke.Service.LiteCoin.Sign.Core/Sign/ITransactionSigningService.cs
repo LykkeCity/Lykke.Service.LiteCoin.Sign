@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Lykke.LiteCoin.Service.Sign.Core.Sign
+namespace Lykke.Service.LiteCoin.Sign.Core.Sign
 {
     public interface ISignResult
     {

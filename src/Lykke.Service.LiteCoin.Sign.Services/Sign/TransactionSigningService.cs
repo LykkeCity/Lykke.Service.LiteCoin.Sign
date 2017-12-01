@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.Log;
-using Lykke.LiteCoin.Service.Sign.Core.Sign;
-using Lykke.LiteCoin.Service.Sign.Core.Transaction;
+using Lykke.Service.LiteCoin.Sign.Core.Sign;
+using Lykke.Service.LiteCoin.Sign.Core.Transaction;
 using NBitcoin;
 
 namespace Lykke.LiteCoin.Sign.Services.Sign

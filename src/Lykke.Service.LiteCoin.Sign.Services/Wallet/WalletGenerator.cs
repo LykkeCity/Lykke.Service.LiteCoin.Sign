@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Lykke.LiteCoin.Service.Sign.Core;
+using Lykke.Service.LiteCoin.Sign.Core;
 using NBitcoin;
 
 namespace Lykke.LiteCoin.Sign.Services.Wallet

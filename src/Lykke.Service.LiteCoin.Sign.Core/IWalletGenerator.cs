@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lykke.LiteCoin.Service.Sign.Core
+namespace Lykke.Service.LiteCoin.Sign.Core
 {
     public interface IGeneratedWallet
     {

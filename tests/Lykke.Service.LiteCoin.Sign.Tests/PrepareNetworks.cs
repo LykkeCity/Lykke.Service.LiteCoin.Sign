@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lykke.LiteCoin.Service.Sign.Tests
+namespace Lykke.Service.LiteCoin.Sign.Tests
 {
     public static class PrepareNetworks
     {

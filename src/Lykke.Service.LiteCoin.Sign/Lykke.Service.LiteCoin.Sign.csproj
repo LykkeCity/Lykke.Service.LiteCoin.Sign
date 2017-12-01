@@ -4,18 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <Version>1.0.1</Version>
-    <AssemblyName>Lykke.LiteCoin.Service.Sign</AssemblyName>
-    <RootNamespace>Lykke.LiteCoin.Service.Sign</RootNamespace>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.0\Lykke.LiteCoin.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.0\Lykke.LiteCoin.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <AssemblyName>Lykke.Service.LiteCoin.Sign</AssemblyName>
+    <RootNamespace>Lykke.Service.LiteCoin.Sign</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -56,12 +46,5 @@
     <ProjectReference Include="..\Lykke.Service.LiteCoin.Sign.Core\Lykke.Service.LiteCoin.Sign.Core.csproj" />
     <ProjectReference Include="..\Lykke.Service.LiteCoin.Sign.Services\Lykke.Service.LiteCoin.Sign.Services.csproj" />
   </ItemGroup>
-
-  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
-    <ItemGroup>
-      <DocFile Include="$(OutputPath)(AssemblyName).xml" />
-    </ItemGroup>
-    <Copy SourceFiles="@(DocFile)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="false" />
-  </Target>
 
 </Project>

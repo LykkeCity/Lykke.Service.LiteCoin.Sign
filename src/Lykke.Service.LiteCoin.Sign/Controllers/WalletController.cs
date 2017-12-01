@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Lykke.LiteCoin.Service.Sign.Models;
+using Lykke.Service.LiteCoin.Sign.Models;
 using Microsoft.AspNetCore.Mvc;
 using NBitcoin;
 
-namespace Lykke.LiteCoin.Service.Sign.Controllers
+namespace Lykke.Service.LiteCoin.Sign.Controllers
 {
     [Route("api/[controller]")]
     public class WalletController

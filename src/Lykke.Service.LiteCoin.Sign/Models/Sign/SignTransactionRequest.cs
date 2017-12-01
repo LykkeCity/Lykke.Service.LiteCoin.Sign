@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
-namespace Lykke.LiteCoin.Service.Sign.Models.Sign
+namespace Lykke.Service.LiteCoin.Sign.Models.Sign
 {
     public class SignTransactionRequest:IValidatableObject
     {

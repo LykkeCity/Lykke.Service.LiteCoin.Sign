@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Net;
-using Lykke.LiteCoin.Service.Sign.Service.Sign;
-using Lykke.LiteCoin.Service.Sign.Service.Sign.Models;
+using Lykke.Service.LiteCoin.Sign.Service.Sign;
+using Lykke.Service.LiteCoin.Sign.Service.Sign.Models;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Lykke.LiteCoin.Service.Sign.Controllers
+namespace Lykke.Service.LiteCoin.Sign.Controllers
 {
     // NOTE: See https://lykkex.atlassian.net/wiki/spaces/LKEWALLET/pages/35755585/Add+your+app+to+Monitoring
     [Route("api/[controller]")]

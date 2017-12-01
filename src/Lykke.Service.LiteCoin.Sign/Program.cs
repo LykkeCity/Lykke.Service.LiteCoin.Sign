@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Lykke.LiteCoin.Service.Sign.Service.Sign
+namespace Lykke.Service.LiteCoin.Sign.Service.Sign
 {
     public class Program
     {

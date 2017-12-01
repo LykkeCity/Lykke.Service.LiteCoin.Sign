@@ -1,7 +1,7 @@
 ﻿using Lykke.LiteCoin.Core.Settings.SlackNotifications;
-using Lykke.LiteCoin.Service.Sign.Core.Settings.ServiceSettings;
+using Lykke.Service.LiteCoin.Sign.Core.Settings.ServiceSettings;
 
-namespace Lykke.LiteCoin.Service.Sign.Core.Settings
+namespace Lykke.Service.LiteCoin.Sign.Core.Settings
 {
     public class AppSettings
     {

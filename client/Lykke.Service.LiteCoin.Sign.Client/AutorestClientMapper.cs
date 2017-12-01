@@ -1,4 +1,4 @@
-﻿namespace Lykke.LiteCoin.Service.Sign.Client
+﻿namespace Lykke.Service.LiteCoin.Sign.Client
 {
     public static class AutorestClientMapper
     {

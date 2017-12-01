@@ -5,7 +5,7 @@
     <Version>1.0.1</Version>
     <Authors>Lykke</Authors>
     <Company>Lykke</Company>
-    <Product>Lykke.LiteCoin.Service</Product>
+    <Product>Lykke.Service.LiteCoin</Product>
     <Description>Client for Lykke.Service.LiteCoin Sign</Description>
     <PackageIconUrl>https://avatars3.githubusercontent.com/u/14153330?v=3&amp;s=200</PackageIconUrl>
     <RepositoryType>git</RepositoryType>

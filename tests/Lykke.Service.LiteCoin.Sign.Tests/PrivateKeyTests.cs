@@ -5,7 +5,7 @@ using Lykke.LiteCoin.Sign.Services.Wallet;
 using NBitcoin;
 using Xunit;
 
-namespace Lykke.LiteCoin.Service.Sign.Tests
+namespace Lykke.Service.LiteCoin.Sign.Tests
 {
     
     public class PrivateKeyTests

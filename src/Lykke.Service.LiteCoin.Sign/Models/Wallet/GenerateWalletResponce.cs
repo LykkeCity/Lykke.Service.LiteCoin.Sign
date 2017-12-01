@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lykke.LiteCoin.Service.Sign.Models
+namespace Lykke.Service.LiteCoin.Sign.Models
 {
     public class GenerateWalletResponce
     {

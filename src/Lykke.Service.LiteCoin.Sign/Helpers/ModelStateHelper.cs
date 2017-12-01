@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Lykke.LiteCoin.Service.Sign.Helpers
+namespace Lykke.Service.LiteCoin.Sign.Helpers
 {
     public static class ModelStateHelper
     {

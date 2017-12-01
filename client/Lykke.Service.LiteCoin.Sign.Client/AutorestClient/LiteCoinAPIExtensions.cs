@@ -2,7 +2,7 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Lykke.LiteCoin.Service.Sign.Client.AutorestClient
+namespace Lykke.Service.LiteCoin.Sign.Client.AutorestClient
 {
     using System.Threading;
     using System.Threading.Tasks;

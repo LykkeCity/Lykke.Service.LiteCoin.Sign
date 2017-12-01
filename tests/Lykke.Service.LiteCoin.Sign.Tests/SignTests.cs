@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common.Log;
-using Lykke.LiteCoin.Service.Sign.Core.Sign;
-using Lykke.LiteCoin.Service.Sign.Core.Transaction;
+using Lykke.Service.LiteCoin.Sign.Core.Sign;
+using Lykke.Service.LiteCoin.Sign.Core.Transaction;
 using Lykke.LiteCoin.Sign.Services.BitcoinTransaction;
 using Lykke.LiteCoin.Sign.Services.Sign;
 using Moq;
 using NBitcoin;
 using Xunit;
 
-namespace Lykke.LiteCoin.Service.Sign.Tests
+namespace Lykke.Service.LiteCoin.Sign.Tests
 {
     public class SignTests
     {

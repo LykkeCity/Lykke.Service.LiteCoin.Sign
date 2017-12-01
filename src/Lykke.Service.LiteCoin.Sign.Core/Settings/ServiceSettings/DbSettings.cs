@@ -1,4 +1,4 @@
-﻿namespace Lykke.LiteCoin.Service.Sign.Core.Settings.ServiceSettings
+﻿namespace Lykke.Service.LiteCoin.Sign.Core.Settings.ServiceSettings
 {
     public class DbSettings
     {

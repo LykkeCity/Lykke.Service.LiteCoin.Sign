@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Lykke.LiteCoin.Service.Sign.Service.Sign.Models
+namespace Lykke.Service.LiteCoin.Sign.Service.Sign.Models
 {
     public class ErrorResponse
     {

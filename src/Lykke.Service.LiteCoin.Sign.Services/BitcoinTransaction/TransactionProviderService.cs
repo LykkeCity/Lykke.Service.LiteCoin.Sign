@@ -2,7 +2,7 @@
 using Common.Log;
 using Flurl;
 using Flurl.Http;
-using Lykke.LiteCoin.Service.Sign.Core.Transaction;
+using Lykke.Service.LiteCoin.Sign.Core.Transaction;
 using Lykke.Signing.Services.Helpers;
 using NBitcoin;
 

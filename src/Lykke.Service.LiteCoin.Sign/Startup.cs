@@ -7,9 +7,9 @@ using Common.Log;
 using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.LiteCoin.Core.Settings;
-using Lykke.LiteCoin.Service.Sign.Core.Settings;
-using Lykke.LiteCoin.Service.Sign.Modules;
-using Lykke.LiteCoin.Service.Sign.Service.Sign;
+using Lykke.Service.LiteCoin.Sign.Core.Settings;
+using Lykke.Service.LiteCoin.Sign.Modules;
+using Lykke.Service.LiteCoin.Sign.Service.Sign;
 using Lykke.LiteCoin.Sign.Services;
 using Lykke.Logs;
 using Lykke.SettingsReader;
@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Lykke.LiteCoin.Service.Sign
+namespace Lykke.Service.LiteCoin.Sign
 {
     public class Startup
     {

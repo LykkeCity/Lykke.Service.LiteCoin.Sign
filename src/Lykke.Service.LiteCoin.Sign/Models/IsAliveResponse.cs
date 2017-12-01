@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Lykke.LiteCoin.Service.Sign.Service.Sign.Models
+namespace Lykke.Service.LiteCoin.Sign.Service.Sign.Models
 {
     public class IsAliveResponse
     {

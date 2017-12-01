@@ -1,11 +1,11 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Common.Log;
-using Lykke.LiteCoin.Service.Sign.Core.Settings.ServiceSettings;
+using Lykke.Service.LiteCoin.Sign.Core.Settings.ServiceSettings;
 using Lykke.SettingsReader;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Lykke.LiteCoin.Service.Sign.Modules
+namespace Lykke.Service.LiteCoin.Sign.Modules
 {
     public class SignInModule : Module
     {

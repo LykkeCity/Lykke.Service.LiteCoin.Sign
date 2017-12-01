@@ -1,17 +1,17 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Lykke.LiteCoin.Service.Sign.Core.Sign;
-using Lykke.LiteCoin.Service.Sign.Core.Transaction;
-using Lykke.LiteCoin.Service.Sign.Helpers;
-using Lykke.LiteCoin.Service.Sign.Models.Sign;
-using Lykke.LiteCoin.Service.Sign.Service.Sign;
-using Lykke.LiteCoin.Service.Sign.Service.Sign.Models;
+using Lykke.Service.LiteCoin.Sign.Core.Sign;
+using Lykke.Service.LiteCoin.Sign.Core.Transaction;
+using Lykke.Service.LiteCoin.Sign.Helpers;
+using Lykke.Service.LiteCoin.Sign.Models.Sign;
+using Lykke.Service.LiteCoin.Sign.Service.Sign;
+using Lykke.Service.LiteCoin.Sign.Service.Sign.Models;
 using Microsoft.AspNetCore.Mvc;
 using NBitcoin;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Lykke.LiteCoin.Service.Sign.Controllers
+namespace Lykke.Service.LiteCoin.Sign.Controllers
 {
     [Route("api/[controller]")]
     public class SignController : Controller

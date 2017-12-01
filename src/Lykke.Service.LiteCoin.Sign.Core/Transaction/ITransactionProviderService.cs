@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NBitcoin;
 
-namespace Lykke.LiteCoin.Service.Sign.Core.Transaction
+namespace Lykke.Service.LiteCoin.Sign.Core.Transaction
 {
     public interface ITransactionProviderService
     {
