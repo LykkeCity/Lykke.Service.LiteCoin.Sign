@@ -1,4 +1,4 @@
 FROM microsoft/aspnetcore:2.0
 WORKDIR /app
 COPY . .
-ENTRYPOINT ["dotnet", "Lykke.Service.LiteCoin.Sign.Service.Sign.dll"]
+ENTRYPOINT ["dotnet", "Lykke.Service.LiteCoin.Sign.dll"]
