@@ -8,7 +8,7 @@ namespace Lykke.Service.LiteCoin.Sign.Models.Sign
 {
     public class SignTransactionRequest:IValidatableObject
     {
-        public string Transaction { get; set; }
+        public string TransactionHex { get; set; }
 
         public IEnumerable<string> PrivateKeys { get; set; }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -16,13 +16,13 @@ namespace Lykke.Service.LiteCoin.Sign.Models.Sign
             try
             {
 
-                NBitcoin.Transaction.Parse(Transaction);
+                NBitcoin.Transaction.Parse(TransactionHex);
             }
             catch 
             {
                 return new[]
                 {
-                    new ValidationResult("Cant parse tx", new[] {nameof(Transaction)}),
+                    new ValidationResult("Cant parse tx", new[] {nameof(TransactionHex)}),
                 };
             }
 

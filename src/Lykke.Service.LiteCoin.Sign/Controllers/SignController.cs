@@ -38,7 +38,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
                 });
             }
 
-            var signResult = await _transactionSigningService.SignAsync(sourceTx.Transaction, sourceTx.PrivateKeys);
+            var signResult = await _transactionSigningService.SignAsync(sourceTx.TransactionHex, sourceTx.PrivateKeys);
 
             if (signResult.IsSuccess)
             {
