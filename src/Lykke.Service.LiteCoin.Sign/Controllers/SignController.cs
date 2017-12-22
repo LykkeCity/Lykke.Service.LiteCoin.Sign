@@ -34,7 +34,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
                 return BadRequest(new SignFailTransactionResponce
                 {
                     Code = SignErrorCode.ValidationError,
-                    Description = ModelState.GetErrorsString()
+                    ErrorMessage = ModelState.GetErrorsString()
                 });
             }
 
