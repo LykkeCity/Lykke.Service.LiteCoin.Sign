@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lykke.Service.LiteCoin.Sign.Models.Sign
 {
-    public class SignTransactionRequest:IValidatableObject
+    public class SignRequest:IValidatableObject
     {
         public string TransactionHex { get; set; }
 

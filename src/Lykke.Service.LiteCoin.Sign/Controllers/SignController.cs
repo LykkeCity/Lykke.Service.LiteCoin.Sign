@@ -27,7 +27,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
         [SwaggerOperation(nameof(SignRawTx))]
         [ProducesResponseType(typeof(SignOkTransactionResponce), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(SignFailTransactionResponce), (int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> SignRawTx([FromBody]SignTransactionRequest sourceTx)
+        public async Task<IActionResult> SignRawTx([FromBody]SignRequest sourceTx)
         {
             if (!ModelState.IsValid)
             {
@@ -44,7 +44,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
             {
                 var respResult = new SignOkTransactionResponce
                 {
-                    Transaction = signResult.TransactionHex
+                    SignedTransaction = signResult.TransactionHex
                 };
 
                 return Ok(respResult);

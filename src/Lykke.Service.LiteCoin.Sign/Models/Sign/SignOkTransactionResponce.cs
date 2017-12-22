@@ -6,6 +6,6 @@ namespace Lykke.Service.LiteCoin.Sign.Models.Sign
 {
     public class SignOkTransactionResponce
     {
-        public string Transaction { get; set; }
+        public string SignedTransaction { get; set; }
     }
 }
