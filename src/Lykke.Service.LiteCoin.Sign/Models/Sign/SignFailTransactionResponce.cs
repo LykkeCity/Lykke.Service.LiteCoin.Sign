@@ -14,6 +14,6 @@ namespace Lykke.Service.LiteCoin.Sign.Models.Sign
     public class SignFailTransactionResponce
     {
        public SignErrorCode Code { get; set; }
-       public string Description { get; set; }
+       public string ErrorMessage { get; set; }
     }
 }
