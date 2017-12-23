@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.Log;
+using Lykke.Service.LiteCoin.Sign.Core.Exceptions;
 using Lykke.Service.LiteCoin.Sign.Core.Sign;
 using Lykke.Service.LiteCoin.Sign.Core.Transaction;
 using NBitcoin;
@@ -13,24 +14,13 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
     internal class SignResult : ISignResult
     {
         public string TransactionHex { get; set; }
-        public bool IsSuccess { get; set; }
-        public SignError? Error { get; set; }
+ 
 
         public static SignResult Ok(string signedHex)
         {
             return new SignResult
             {
-                IsSuccess = true,
                 TransactionHex = signedHex
-            };
-        }
-
-        public static SignResult Fail(SignError error)
-        {
-            return new SignResult
-            {
-                IsSuccess = false,
-                Error = error
             };
         }
     }
@@ -89,7 +79,7 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
                         continue;
                     }
 
-                    return SignResult.Fail(SignError.IncompatiblePrivateKey);
+                    throw new BackendException("Incompatible private key", ErrorCode.IncompatiblePrivateKey);
                 }
 
                 if (PayToPubkeyTemplate.Instance.CheckScriptPubKey(output.ScriptPubKey))
@@ -105,11 +95,11 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
                         continue;
                     }
 
-                    return SignResult.Fail(SignError.IncompatiblePrivateKey);
+                    throw new BackendException("Incompatible private key", ErrorCode.IncompatiblePrivateKey);
                 }
 
 
-                return SignResult.Fail(SignError.InvalidScript);
+                throw new BackendException("Incompatible private key", ErrorCode.InvalidScript);
             }
 
             return SignResult.Ok(tx.ToHex());

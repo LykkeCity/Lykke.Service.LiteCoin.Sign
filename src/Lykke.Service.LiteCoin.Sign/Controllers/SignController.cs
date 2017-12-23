@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Lykke.Service.LiteCoin.Sign.Core.Sign;
 using Lykke.Service.LiteCoin.Sign.Core.Transaction;
 using Lykke.Service.LiteCoin.Sign.Helpers;
+using Lykke.Service.LiteCoin.Sign.Models;
 using Lykke.Service.LiteCoin.Sign.Models.Sign;
 using Lykke.Service.LiteCoin.Sign.Service.Sign;
 using Lykke.Service.LiteCoin.Sign.Service.Sign.Models;
@@ -26,34 +27,23 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
         [HttpPost]
         [SwaggerOperation(nameof(SignRawTx))]
         [ProducesResponseType(typeof(SignOkTransactionResponce), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(SignFailTransactionResponce), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> SignRawTx([FromBody]SignRequest sourceTx)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new SignFailTransactionResponce
-                {
-                    Code = SignErrorCode.ValidationError,
-                    ErrorMessage = ModelState.GetErrorsString()
-                });
+
+                return BadRequest(ErrorResponse.Create("ValidationError", ModelState));
             }
 
             var signResult = await _transactionSigningService.SignAsync(sourceTx.TransactionHex, sourceTx.PrivateKeys);
 
-            if (signResult.IsSuccess)
+            var respResult = new SignOkTransactionResponce
             {
-                var respResult = new SignOkTransactionResponce
-                {
-                    SignedTransaction = signResult.TransactionHex
-                };
+                SignedTransaction = signResult.TransactionHex
+            };
 
-                return Ok(respResult);
-            }
-
-            return BadRequest(new SignFailTransactionResponce
-            {
-                Code = SignErrorCode.CantSignUsingProvidedPrivateKey
-            });
+            return Ok(respResult);
         }
     }
 }

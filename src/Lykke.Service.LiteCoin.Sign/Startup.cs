@@ -12,6 +12,8 @@ using Lykke.Service.LiteCoin.Sign.Modules;
 using Lykke.Service.LiteCoin.Sign.Service.Sign;
 using Lykke.LiteCoin.Sign.Services;
 using Lykke.Logs;
+using Lykke.Service.LiteCoin.Sign.Core.Exceptions;
+using Lykke.Service.LiteCoin.Sign.Models;
 using Lykke.SettingsReader;
 using Lykke.SlackNotification.AzureQueue;
 using Microsoft.AspNetCore.Builder;
@@ -89,9 +91,19 @@ namespace Lykke.Service.LiteCoin.Sign
                 {
                     app.UseDeveloperExceptionPage();
                 }
+                
+                app.UseLykkeMiddleware("LiteCoin.Service.Sign", ex =>
+                {
+                    if (ex is BackendException clientError)
+                    {
+                        var response = ErrorResponse.Create();
+                        response.AddModelError(clientError.Code.ToString(), clientError.Text);
 
-                app.UseLykkeMiddleware("LiteCoin.Service.Sign", ex => new {Message = "Technical problem"});
+                        return response;
+                    }
 
+                    return new { Message = "Technical problem" };
+                });
                 app.UseMvc();
                 app.UseSwagger();
                 app.UseSwaggerUI(x =>

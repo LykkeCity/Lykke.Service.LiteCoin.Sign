@@ -7,10 +7,6 @@ namespace Lykke.Service.LiteCoin.Sign.Core.Sign
     public interface ISignResult
     {
         string TransactionHex { get; }
-
-        bool IsSuccess { get; }
-
-        SignError? Error { get; }
     }
 
     public enum SignError

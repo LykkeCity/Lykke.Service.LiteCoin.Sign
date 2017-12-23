@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 
-namespace Lykke.Service.LiteCoin.Sign.Service.Sign.Models
+namespace Lykke.Service.LiteCoin.Sign.Models
 {
+    [DataContract]
     public class ErrorResponse
     {
-        [JsonProperty(PropertyName = "errorMessage")]
+        [DataMember(Name = "errorMessage")]
         public string ErrorMessage { get; }
 
+        [DataMember(Name = "modelErrors")]
         public Dictionary<string, List<string>> ModelErrors { get; }
 
         private ErrorResponse() :
@@ -27,7 +29,7 @@ namespace Lykke.Service.LiteCoin.Sign.Service.Sign.Models
 
         public ErrorResponse AddModelError(string key, string message)
         {
-            if (!ModelErrors.TryGetValue(key, out List<string> errors))
+            if (!ModelErrors.TryGetValue(key, out var errors))
             {
                 errors = new List<string>();
 
@@ -64,9 +66,9 @@ namespace Lykke.Service.LiteCoin.Sign.Service.Sign.Models
             return new ErrorResponse();
         }
 
-        public static ErrorResponse Create(ModelStateDictionary modelState)
+        public static ErrorResponse Create(string errorMessage, ModelStateDictionary modelState)
         {
-            var response = new ErrorResponse();
+            var response = new ErrorResponse(errorMessage);
 
             foreach (var state in modelState)
             {

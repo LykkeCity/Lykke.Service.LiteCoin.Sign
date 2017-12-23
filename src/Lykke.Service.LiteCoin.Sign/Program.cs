@@ -23,7 +23,8 @@ namespace Lykke.Service.LiteCoin.Sign.Service.Sign
             {
                 var host = new WebHostBuilder()
                     .UseKestrel()
-                    .UseUrls("http://*:5000")
+                    .UseIISIntegration()
+                    .UseUrls("http://*:5001")
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .UseStartup<Startup>()
                     .UseApplicationInsights()
