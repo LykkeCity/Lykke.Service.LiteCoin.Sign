@@ -6,6 +6,7 @@ using Lykke.Service.LiteCoin.Sign.Core.Sign;
 using Lykke.Service.LiteCoin.Sign.Core.Transaction;
 using Lykke.LiteCoin.Sign.Services.BitcoinTransaction;
 using Lykke.LiteCoin.Sign.Services.Sign;
+using Lykke.Service.LiteCoin.Sign.Core.Exceptions;
 using Moq;
 using NBitcoin;
 using Xunit;
@@ -53,7 +54,7 @@ namespace Lykke.Service.LiteCoin.Sign.Tests
             var signResult = await signer.SignAsync(builder.BuildTransaction(false).ToHex(),
                 new[] {sender.GetWif(network).ToString()});
 
-            Assert.True(signResult.IsSuccess);
+            Assert.True(signResult.TransactionHex !=null);
 
             Assert.True(!string.IsNullOrEmpty(signResult.TransactionHex));
 
@@ -93,15 +94,10 @@ namespace Lykke.Service.LiteCoin.Sign.Tests
                 .Send(receiver.PubKey.GetAddress(network), "5")
                 .SendFees("0.1")
                 .SetChange(invalidSender.PubKey.GetAddress(network));
-
-
-            var signResult = await signer.SignAsync(builder.BuildTransaction(false).ToHex(),
-                new[] { invalidSender.GetWif(network).ToString() });
-
-            Assert.False(signResult.IsSuccess);
-
-            Assert.True(string.IsNullOrEmpty(signResult.TransactionHex));
-            Assert.True(signResult.Error == SignError.IncompatiblePrivateKey);
+            
+            await Assert.ThrowsAsync<BackendException>(async () => await signer.SignAsync(
+                builder.BuildTransaction(false).ToHex(),
+                new[] {invalidSender.GetWif(network).ToString()}));
         }
 
         #region Helper 
