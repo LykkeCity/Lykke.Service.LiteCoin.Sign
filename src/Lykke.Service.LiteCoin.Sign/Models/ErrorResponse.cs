@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Newtonsoft.Json;
 
 namespace Lykke.Service.LiteCoin.Sign.Service.Sign.Models
 {
     public class ErrorResponse
     {
+        [JsonProperty(PropertyName = "errorMessage")]
         public string ErrorMessage { get; }
 
         public Dictionary<string, List<string>> ModelErrors { get; }

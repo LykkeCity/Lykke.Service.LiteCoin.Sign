@@ -1,9 +1,14 @@
-﻿namespace Lykke.Service.LiteCoin.Sign.Models.Wallet
+﻿using System.Runtime.Serialization;
+
+namespace Lykke.Service.LiteCoin.Sign.Models.Wallet
 {
+    [DataContract]
     public class WalletCreationResponse
     {
-        public string PrivateKey { get; set; }
-
+        [DataMember(Name = "publicAddress")]
         public string PublicAddress { get; set; }
+
+        [DataMember(Name = "privateKey")]
+        public string PrivateKey { get; set; }
     }
 }
