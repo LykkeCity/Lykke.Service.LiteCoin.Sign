@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Lykke.Service.LiteCoin.Sign.Core.Exceptions
 {
-    public class BackendException : Exception
+    public class BusinessException : Exception
     {
         public ErrorCode Code { get; private set; }
         public string Text { get; private set; }
 
-        public BackendException(string text, ErrorCode code)
+        public BusinessException(string text, ErrorCode code)
             : base(text)
         {
             Code = code;
@@ -21,7 +21,8 @@ namespace Lykke.Service.LiteCoin.Sign.Core.Exceptions
     {
         IncompatiblePrivateKey,
 
-        InvalidScript
+        InvalidScript,
+        InputNotFound
 
     }
 }

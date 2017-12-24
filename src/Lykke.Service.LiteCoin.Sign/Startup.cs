@@ -94,7 +94,7 @@ namespace Lykke.Service.LiteCoin.Sign
                 
                 app.UseLykkeMiddleware("LiteCoin.Service.Sign", ex =>
                 {
-                    if (ex is BackendException clientError)
+                    if (ex is BusinessException clientError)
                     {
                         var response = ErrorResponse.Create();
                         response.AddModelError(clientError.Code.ToString(), clientError.Text);

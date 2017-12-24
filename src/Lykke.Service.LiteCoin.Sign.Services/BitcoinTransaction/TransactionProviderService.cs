@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
 using Common.Log;
 using Flurl;
 using Flurl.Http;
@@ -30,10 +32,18 @@ namespace Lykke.LiteCoin.Sign.Services.BitcoinTransaction
             return Transaction.Parse(resp.RawTx);
         }
 
-        private Task<TransactionInsightsApiResponceContract> GetTransactionResp(uint256 hash)
+        private async Task<TransactionInsightsApiResponceContract> GetTransactionResp(uint256 hash)
         {
-            return _insightsApiSettings.Url.AppendPathSegment($"insight-lite-api/rawtx/{hash}")
-                .GetJsonAsync<TransactionInsightsApiResponceContract>();
+            try
+            {
+                return await _insightsApiSettings.Url.AppendPathSegment($"insight-lite-api/rawtx/{hash}")
+                    .GetJsonAsync<TransactionInsightsApiResponceContract>();
+            }
+            catch (FlurlHttpException e) when (e.Call.Response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return null;
+            }
+
         }
     }
 }

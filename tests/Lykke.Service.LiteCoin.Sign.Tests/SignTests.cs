@@ -95,7 +95,7 @@ namespace Lykke.Service.LiteCoin.Sign.Tests
                 .SendFees("0.1")
                 .SetChange(invalidSender.PubKey.GetAddress(network));
             
-            await Assert.ThrowsAsync<BackendException>(async () => await signer.SignAsync(
+            await Assert.ThrowsAsync<BusinessException>(async () => await signer.SignAsync(
                 builder.BuildTransaction(false).ToHex(),
                 new[] {invalidSender.GetWif(network).ToString()}));
         }

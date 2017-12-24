@@ -63,9 +63,14 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
                 var input = tx.Inputs[i];
 
                 var prevTransaction = await _transactionProviderService.GetTransaction(input.PrevOut.Hash);
+
+                if (prevTransaction == null)
+                {
+                    throw new BusinessException("Input not found", ErrorCode.InputNotFound);
+                }
                 
                 var output = prevTransaction.Outputs[input.PrevOut.N];
-
+                
                 if (PayToPubkeyHashTemplate.Instance.CheckScriptPubKey(output.ScriptPubKey))
                 {
                     var secret = GetPrivateKey(PayToPubkeyHashTemplate.Instance.ExtractScriptPubKeyParameters(output.ScriptPubKey));
@@ -79,7 +84,7 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
                         continue;
                     }
 
-                    throw new BackendException("Incompatible private key", ErrorCode.IncompatiblePrivateKey);
+                    throw new BusinessException("Incompatible private key", ErrorCode.IncompatiblePrivateKey);
                 }
 
                 if (PayToPubkeyTemplate.Instance.CheckScriptPubKey(output.ScriptPubKey))
@@ -95,11 +100,11 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
                         continue;
                     }
 
-                    throw new BackendException("Incompatible private key", ErrorCode.IncompatiblePrivateKey);
+                    throw new BusinessException("Incompatible private key", ErrorCode.IncompatiblePrivateKey);
                 }
 
 
-                throw new BackendException("Incompatible private key", ErrorCode.InvalidScript);
+                throw new BusinessException("Incompatible private key", ErrorCode.InvalidScript);
             }
 
             return SignResult.Ok(tx.ToHex());
