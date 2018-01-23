@@ -9,11 +9,11 @@ using NBitcoin;
 namespace Lykke.Service.LiteCoin.Sign.Controllers
 {
     [Route("api/[controller]")]
-    public class WalletController
+    public class WalletsController
     {
         private readonly Network _network;
 
-        public WalletController(Network network)
+        public WalletsController(Network network)
         {
             _network = network;
         }

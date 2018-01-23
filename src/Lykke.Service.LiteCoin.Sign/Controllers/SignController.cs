@@ -36,7 +36,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
                 return BadRequest(ErrorResponse.Create("ValidationError", ModelState));
             }
 
-            var signResult = await _transactionSigningService.SignAsync(sourceTx.TransactionHex, sourceTx.PrivateKeys);
+            var signResult = await _transactionSigningService.SignAsync(sourceTx.TransactionContext, sourceTx.PrivateKeys);
 
             var respResult = new SignOkTransactionResponce
             {
