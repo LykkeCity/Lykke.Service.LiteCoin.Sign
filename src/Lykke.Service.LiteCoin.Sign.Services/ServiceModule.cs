@@ -30,7 +30,7 @@ namespace Lykke.LiteCoin.Sign.Services
 
         private void RegisterNetwork(ContainerBuilder builder)
         {
-            NBitcoin.Litecoin.Networks.Register();
+            NBitcoin.Litecoin.Networks.EnsureRegistered();
             builder.RegisterInstance(Network.GetNetwork(_settings.CurrentValue.Network)).As<Network>();
 
             builder.RegisterInstance(new InsightsApiSettings

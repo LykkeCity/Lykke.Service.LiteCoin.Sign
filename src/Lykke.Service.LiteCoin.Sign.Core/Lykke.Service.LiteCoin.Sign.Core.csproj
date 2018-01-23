@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lykke.Common" Version="3.0.0" />
-    <PackageReference Include="NBitcoin" Version="4.0.0.47" />
+    <PackageReference Include="Lykke.Common" Version="4.2.0" />
+    <PackageReference Include="NBitcoin" Version="4.0.0.52" />
   </ItemGroup>
 
 </Project>
