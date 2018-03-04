@@ -10,5 +10,8 @@ namespace Lykke.Service.LiteCoin.Sign.Models.Wallet
 
         [DataMember(Name = "privateKey")]
         public string PrivateKey { get; set; }
+
+        [DataMember(Name = "addressContext")]
+        public string AddressContext { get; set; }
     }
 }
