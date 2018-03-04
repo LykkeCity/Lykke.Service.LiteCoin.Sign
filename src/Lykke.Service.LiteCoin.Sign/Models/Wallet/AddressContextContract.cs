@@ -6,7 +6,7 @@ using System.Text;
 namespace Lykke.Service.LiteCoin.Sign.Models.Wallet
 {
 
-    public class WalletCreationAddressCountextContract
+    public class AddressContextContract
     {
         public string PubKey { get; set; }
     }
