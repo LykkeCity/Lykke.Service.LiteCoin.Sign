@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NBitcoin;
 
 namespace Lykke.Service.LiteCoin.Sign.Core.Sign
 {
@@ -18,6 +19,6 @@ namespace Lykke.Service.LiteCoin.Sign.Core.Sign
 
     public interface ITransactionSigningService
     {
-        Task<ISignResult> SignAsync(string transactionHex, IEnumerable<string> privateKeys);
+        ISignResult Sign(NBitcoin.Transaction tx, IEnumerable<ICoin> spentCoins, IEnumerable<string> privateKeys);
     }
 }
