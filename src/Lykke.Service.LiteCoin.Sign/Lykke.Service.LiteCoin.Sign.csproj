@@ -7,12 +7,6 @@
     <AssemblyName>Lykke.Service.LiteCoin.Sign</AssemblyName>
     <RootNamespace>Lykke.Service.LiteCoin.Sign</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
   
   <ItemGroup>
     <None Update="Dockerfile">
