@@ -25,7 +25,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
 
             return new WalletCreationResponse
             {
-                PublicAddress = key.PubKey.GetAddress(_network).ToString(),
+                PublicAddress = key.PubKey.WitHash.ScriptPubKey.Hash.GetAddress(_network).ToString(),
                 PrivateKey = key.GetWif(_network).ToString()
             };
         }
