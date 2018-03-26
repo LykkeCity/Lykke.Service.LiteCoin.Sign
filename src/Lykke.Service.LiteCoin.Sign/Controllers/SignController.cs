@@ -32,10 +32,10 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
                 return BadRequest(ErrorResponse.Create("ValidationError", ModelState));
             }
 
-            (Transaction, ICoin[]) decoded;
+            (Transaction, Coin[]) decoded;
             try
             {
-                decoded = Serializer.ToObject<(Transaction, ICoin[])>(sourceTx.TransactionContext);
+                decoded = Serializer.ToObject<(Transaction, Coin[])>(sourceTx.TransactionContext);
             }
             catch(Exception e)
             {
