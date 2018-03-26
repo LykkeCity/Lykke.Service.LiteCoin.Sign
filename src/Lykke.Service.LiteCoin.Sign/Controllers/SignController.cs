@@ -1,15 +1,11 @@
-﻿using System.Linq;
+﻿using System;
 using System.Net;
-using System.Threading.Tasks;
 using Lykke.Service.LiteCoin.Sign.Core.Sign;
-using Lykke.Service.LiteCoin.Sign.Core.Transaction;
-using Lykke.Service.LiteCoin.Sign.Helpers;
 using Lykke.Service.LiteCoin.Sign.Models;
 using Lykke.Service.LiteCoin.Sign.Models.Sign;
-using Lykke.Service.LiteCoin.Sign.Service.Sign;
-using Lykke.Service.LiteCoin.Sign.Service.Sign.Models;
 using Microsoft.AspNetCore.Mvc;
 using NBitcoin;
+using NBitcoin.JsonConverters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Lykke.Service.LiteCoin.Sign.Controllers
@@ -28,7 +24,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
         [SwaggerOperation(nameof(SignRawTx))]
         [ProducesResponseType(typeof(SignOkTransactionResponce), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> SignRawTx([FromBody]SignRequest sourceTx)
+        public IActionResult SignRawTx([FromBody]SignRequest sourceTx)
         {
             if (!ModelState.IsValid)
             {
@@ -36,7 +32,17 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
                 return BadRequest(ErrorResponse.Create("ValidationError", ModelState));
             }
 
-            var signResult = await _transactionSigningService.SignAsync(sourceTx.TransactionContext, sourceTx.PrivateKeys);
+            (Transaction, ICoin[]) decoded;
+            try
+            {
+                decoded = Serializer.ToObject<(Transaction, ICoin[])>(sourceTx.TransactionContext);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(ErrorResponse.Create($"Decode transaction context error: {e}"));
+            }
+
+            var signResult = _transactionSigningService.Sign(decoded.Item1, decoded.Item2, sourceTx.PrivateKeys);
 
             var respResult = new SignOkTransactionResponce
             {

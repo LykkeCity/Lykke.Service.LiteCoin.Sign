@@ -51,7 +51,7 @@ namespace Lykke.Service.LiteCoin.Sign.Tests
                 .SetChange(sender.PubKey.GetAddress(network));
 
             
-            var signResult = await signer.SignAsync(builder.BuildTransaction(false).ToHex(),
+            var signResult = await signer.Sign(builder.BuildTransaction(false).ToHex(),
                 new[] {sender.GetWif(network).ToString()});
 
             Assert.True(signResult.TransactionHex !=null);
@@ -95,7 +95,7 @@ namespace Lykke.Service.LiteCoin.Sign.Tests
                 .SendFees("0.1")
                 .SetChange(invalidSender.PubKey.GetAddress(network));
             
-            await Assert.ThrowsAsync<BusinessException>(async () => await signer.SignAsync(
+            await Assert.ThrowsAsync<BusinessException>(async () => await signer.Sign(
                 builder.BuildTransaction(false).ToHex(),
                 new[] {invalidSender.GetWif(network).ToString()}));
         }

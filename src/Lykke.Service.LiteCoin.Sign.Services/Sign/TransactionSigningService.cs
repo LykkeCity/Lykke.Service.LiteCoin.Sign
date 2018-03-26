@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Common.Log;
 using Lykke.Service.LiteCoin.Sign.Core.Exceptions;
 using Lykke.Service.LiteCoin.Sign.Core.Sign;
-using Lykke.Service.LiteCoin.Sign.Core.Transaction;
 using NBitcoin;
 
 namespace Lykke.LiteCoin.Sign.Services.Sign
@@ -28,20 +23,14 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
     public class TransactionSigningService: ITransactionSigningService
     {
         private readonly Network _network;
-        private readonly ILog _log;
-        private readonly ITransactionProviderService _transactionProviderService;
 
-        public TransactionSigningService(Network network, ILog log, ITransactionProviderService transactionProviderService)
+        public TransactionSigningService(Network network)
         {
             _network = network;
-            _log = log;
-            _transactionProviderService = transactionProviderService;
         }
 
-        public async Task<ISignResult> SignAsync(string transactionHex, IEnumerable<string> privateKeys)
+        public ISignResult Sign(Transaction tx, IEnumerable<ICoin> spentCoins, IEnumerable<string> privateKeys)
         {
-            var tx = new Transaction(transactionHex);
-
             var secretKeys = privateKeys.Select(p=>Key.Parse(p, _network)).ToList();
 
             Key GetPrivateKey(TxDestination pubKeyHash)
@@ -61,22 +50,15 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
             for (int i = 0; i < tx.Inputs.Count; i++)
             {
                 var input = tx.Inputs[i];
-
-                var prevTransaction = await _transactionProviderService.GetTransaction(input.PrevOut.Hash);
-
-                if (prevTransaction == null)
-                {
-                    throw new BusinessException("Input not found", ErrorCode.InputNotFound);
-                }
                 
-                var output = prevTransaction.Outputs[input.PrevOut.N];
-                
-                if (PayToPubkeyHashTemplate.Instance.CheckScriptPubKey(output.ScriptPubKey))
+                var output = spentCoins.Single(p=>p.Outpoint==input.PrevOut);
+
+                if (PayToPubkeyHashTemplate.Instance.CheckScriptPubKey(output.GetScriptCode()))
                 {
-                    var secret = GetPrivateKey(PayToPubkeyHashTemplate.Instance.ExtractScriptPubKeyParameters(output.ScriptPubKey));
+                    var secret = GetPrivateKey(PayToPubkeyHashTemplate.Instance.ExtractScriptPubKeyParameters(output.GetScriptCode()));
                     if (secret != null)
                     {
-                        var hash = Script.SignatureHash(output.ScriptPubKey, tx, i, hashType);
+                        var hash = Script.SignatureHash(output.GetScriptCode(), tx, i, hashType);
                         var signature = secret.Sign(hash, hashType);
 
                         tx.Inputs[i].ScriptSig = PayToPubkeyHashTemplate.Instance.GenerateScriptSig(signature, secret.PubKey);
@@ -86,12 +68,12 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
                     
                 }
 
-                if (PayToPubkeyTemplate.Instance.CheckScriptPubKey(output.ScriptPubKey))
+                if (PayToPubkeyTemplate.Instance.CheckScriptPubKey(output.GetScriptCode()))
                 {
-                    var secret = GetPrivateKey(PayToPubkeyTemplate.Instance.ExtractScriptPubKeyParameters(output.ScriptPubKey).Hash);
+                    var secret = GetPrivateKey(PayToPubkeyTemplate.Instance.ExtractScriptPubKeyParameters(output.GetScriptCode()).Hash);
                     if (secret != null)
                     {
-                        var hash = Script.SignatureHash(output.ScriptPubKey, tx, i, hashType);
+                        var hash = Script.SignatureHash(output.GetScriptCode(), tx, i, hashType);
                         var signature = secret.Sign(hash, hashType);
 
                         tx.Inputs[i].ScriptSig = PayToPubkeyTemplate.Instance.GenerateScriptSig(signature);
