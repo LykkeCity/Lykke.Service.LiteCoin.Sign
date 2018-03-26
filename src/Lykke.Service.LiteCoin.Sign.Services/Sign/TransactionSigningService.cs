@@ -29,7 +29,7 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
             _network = network;
         }
 
-        public ISignResult Sign(Transaction tx, IEnumerable<ICoin> spentCoins, IEnumerable<string> privateKeys)
+        public ISignResult Sign(Transaction tx, IEnumerable<Coin> spentCoins, IEnumerable<string> privateKeys)
         {
             var secretKeys = privateKeys.Select(p=>Key.Parse(p, _network)).ToList();
 
@@ -102,7 +102,7 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
 
                     if (secret != null && secret.PubKey.WitHash.ScriptPubKey.Hash.ScriptPubKey == output.ScriptPubKey)
                     {
-                        var hash = Script.SignatureHash(secret.PubKey.WitHash.AsKeyId().ScriptPubKey, tx, i, hashType, output.Value, HashVersion.Witness);
+                        var hash = Script.SignatureHash(secret.PubKey.WitHash.AsKeyId().ScriptPubKey, tx, i, hashType, output.Amount, HashVersion.Witness);
                         var signature = secret.Sign(hash, hashType);
                         tx.Inputs[i].WitScript = PayToPubkeyHashTemplate.Instance.GenerateScriptSig(signature, secret.PubKey);
                         tx.Inputs[i].ScriptSig = new Script(Op.GetPushOp(secret.PubKey.WitHash.ScriptPubKey.ToBytes(true)));
