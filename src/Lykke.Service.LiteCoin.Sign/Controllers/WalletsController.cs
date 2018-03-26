@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Common;
 using Lykke.Service.LiteCoin.Sign.Models;
 using Lykke.Service.LiteCoin.Sign.Models.Wallet;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +26,9 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
 
             return new WalletCreationResponse
             {
-                PublicAddress = key.PubKey.GetAddress(_network).ToString(),
-                PrivateKey = key.GetWif(_network).ToString()
+                PublicAddress = key.PubKey.WitHash.ScriptPubKey.Hash.GetAddress(_network).ToString(),
+                PrivateKey = key.GetWif(_network).ToString(),
+                AddressContext = new AddressContextContract { PubKey = key.PubKey.ToHex()}.ToJson()
             };
         }
     }
