@@ -32,7 +32,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
                 return BadRequest(ErrorResponse.Create("ValidationError", ModelState));
             }
 
-            (Transaction, Coin[]) decoded;
+            (Transaction tx, Coin[] coins) decoded;
             try
             {
                 decoded = Serializer.ToObject<(Transaction, Coin[])>(sourceTx.TransactionContext);
@@ -42,7 +42,7 @@ namespace Lykke.Service.LiteCoin.Sign.Controllers
                 return BadRequest(ErrorResponse.Create($"Decode transaction context error: {e}"));
             }
 
-            var signResult = _transactionSigningService.Sign(decoded.Item1, decoded.Item2, sourceTx.PrivateKeys);
+            var signResult = _transactionSigningService.Sign(decoded.tx, decoded.coins, sourceTx.PrivateKeys);
 
             var respResult = new SignOkTransactionResponce
             {
