@@ -19,19 +19,6 @@ namespace Lykke.Service.LiteCoin.Sign.Models.Sign
         {
             try
             {
-
-                NBitcoin.Transaction.Parse(TransactionContext);
-            }
-            catch 
-            {
-                return new[]
-                {
-                    new ValidationResult("Cant parse tx", new[] {nameof(TransactionContext)}),
-                };
-            }
-
-            try
-            {
                 foreach (var privateKey in PrivateKeys)
                 {
                     NBitcoin.Key.Parse(privateKey);
