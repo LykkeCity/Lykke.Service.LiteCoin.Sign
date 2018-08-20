@@ -40,5 +40,9 @@
     <ProjectReference Include="..\Lykke.Service.LiteCoin.Sign.Core\Lykke.Service.LiteCoin.Sign.Core.csproj" />
     <ProjectReference Include="..\Lykke.Service.LiteCoin.Sign.Services\Lykke.Service.LiteCoin.Sign.Services.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Modules\" />
+  </ItemGroup>
 
 </Project>
