@@ -85,7 +85,7 @@ namespace Lykke.Service.LiteCoin.Sign
                     return response;
                 }
 
-                return new { Message = "Technical problem" };
+                return ErrorResponse.Create(ex.ToString());
             });
             app.UseMvc();
             app.UseSwagger();
