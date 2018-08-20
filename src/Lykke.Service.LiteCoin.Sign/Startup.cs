@@ -5,6 +5,7 @@ using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Service.LiteCoin.Sign.Core.Settings;
 using Lykke.LiteCoin.Sign.Services;
+using Lykke.Logs;
 using Lykke.Service.LiteCoin.Sign.Core.Exceptions;
 using Lykke.Service.LiteCoin.Sign.Models;
 using Lykke.SettingsReader;
@@ -45,6 +46,9 @@ namespace Lykke.Service.LiteCoin.Sign
                 options.DefaultLykkeConfiguration("v1", "LiteCoin.Service.Sign");
             });
 
+
+            services.AddEmptyLykkeLogging();
+
             var builder = new ContainerBuilder();
             var appSettings = Configuration.LoadSettings<AppSettings>();
 
@@ -71,7 +75,7 @@ namespace Lykke.Service.LiteCoin.Sign
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseLykkeMiddleware("LiteCoin.Service.Sign", ex =>
+            app.UseLykkeMiddleware(ex =>
             {
                 if (ex is BusinessException clientError)
                 {
