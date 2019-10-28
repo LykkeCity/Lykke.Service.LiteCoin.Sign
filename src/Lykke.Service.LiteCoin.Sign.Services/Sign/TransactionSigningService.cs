@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Lykke.Service.LiteCoin.Sign.Core.Exceptions;
 using Lykke.Service.LiteCoin.Sign.Core.Sign;
 using NBitcoin;
 
@@ -29,9 +29,20 @@ namespace Lykke.LiteCoin.Sign.Services.Sign
             _network = network;
         }
 
-        public ISignResult Sign(Transaction tx, IEnumerable<Coin> spentCoins, IEnumerable<string> privateKeys)
+        public ISignResult Sign(Transaction tx, IEnumerable<Coin> spentCoins, IReadOnlyCollection<string> privateKeys)
         {
-            var secretKeys = privateKeys.Select(p=>Key.Parse(p, _network)).ToArray();
+            Key[] secretKeys;
+
+            try
+            {
+                secretKeys = privateKeys.Select(p => Key.Parse(p, _network)).ToArray();
+            }
+            catch (FormatException)
+            {
+                var btcNetwork = Network.Main;
+
+                secretKeys = privateKeys.Select(p => Key.Parse(p, btcNetwork)).ToArray();
+            }
 
             var signed = new TransactionBuilder()
                 .AddCoins(spentCoins)
