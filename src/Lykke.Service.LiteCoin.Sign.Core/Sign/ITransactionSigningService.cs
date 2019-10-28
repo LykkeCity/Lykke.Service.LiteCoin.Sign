@@ -19,6 +19,6 @@ namespace Lykke.Service.LiteCoin.Sign.Core.Sign
 
     public interface ITransactionSigningService
     {
-        ISignResult Sign(NBitcoin.Transaction tx, IEnumerable<Coin> spentCoins, IEnumerable<string> privateKeys);
+        ISignResult Sign(Transaction tx, IEnumerable<Coin> spentCoins, IReadOnlyCollection<string> privateKeys);
     }
 }
